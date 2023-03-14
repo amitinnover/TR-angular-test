@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="colm-form">
+    <div class="form-container">
+      <form [formGroup]="registerForm">
+        <h2>Register</h2>
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <input
+              type="text"
+              matInput
+              placeholder="UserName"
+              autocomplete="off"
+              formControlName="name"
+            />
+          </mat-form-field>
+          <div *ngIf="isFormSubmitted && registerFormValue['name'].errors">
+            <span
+              *ngIf="registerFormValue['name'].errors.required"
+              class="invalid-feedback"
+            >
+              Username is required.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <input
+              type="input"
+              matInput
+              placeholder="Email"
+              autocomplete="off"
+              formControlName="email"
+            />
+          </mat-form-field>
+          <div *ngIf="isFormSubmitted && registerFormValue['email'].errors">
+            <span
+              *ngIf="registerFormValue['email'].errors.required"
+              class="invalid-feedback"
+            >
+              Email is required.
+            </span>
+            <span
+              *ngIf="registerFormValue['email'].errors.pattern"
+              class="invalid-feedback"
+            >
+              Email must be a valid email address.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              autocomplete="off"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <div
+            *ngIf="isFormSubmitted && registerFormValue['password'].errors"
+            class="invalid-feedback"
+          >
+            <span *ngIf="registerFormValue['password'].errors.required">
+              Password is required.
+            </span>
+            <span *ngIf="registerFormValue['password'].errors.minlength">
+              Password must be at least 4 characters
+            </span>
+          </div>
+        </div>
+      </form>
+      <button class="btn-login" (click)="submitDetail()">Save</button>
+      <a routerLink="/login">Login here</a>
+    </div>
+  </div>
+</div>
